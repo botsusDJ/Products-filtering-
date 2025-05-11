@@ -69,27 +69,22 @@ function filterProducts() {
     let selectedSort = selectSort.value;
 
     let filteredProducts = productsData.filter(function (product) {
-        let matchesType = selectedType == "all" || product.type == selectedType;
-
-        if (matchesType) {
-            return true;
-        };
-
-        if (selectedSort == "priceUp") {
-            productsData.sort((a, b) => a.price - b.price);
-        };
-        if (selectedSort == "priceDown") {
-            productsData.sort((a, b) => b.price - a.price);
-        };
-        if (selectedSort == "fromAToZ") {
-            productsData.sort((a, b) => a.name.localeCompare(b.name));
-        };
-
-        return false;
+        return selectedType === "all" || product.type === selectedType;
     });
 
-    renderProducts(filteredProducts)
-};
+
+    if (selectedSort === "priceUp") {
+        filteredProducts.sort((a, b) => a.price - b.price);
+    } else if (selectedSort === "priceDown") {
+        filteredProducts.sort((a, b) => b.price - a.price);
+    } else if (selectedSort === "fromAToZ") {
+        filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+
+    renderProducts(filteredProducts);
+}
+
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("typeSelect").addEventListener("change", filterProducts);
