@@ -75,9 +75,11 @@ function filterProducts() {
 
     if (selectedSort === "priceUp") {
         filteredProducts.sort((a, b) => a.price - b.price);
-    } else if (selectedSort === "priceDown") {
+    }
+    if (selectedSort === "priceDown") {
         filteredProducts.sort((a, b) => b.price - a.price);
-    } else if (selectedSort === "fromAToZ") {
+    }
+    if (selectedSort === "fromAToZ") {
         filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
     }
 
